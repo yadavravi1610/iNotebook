@@ -1,0 +1,183 @@
+:root {
+  --navy: #102a43;
+  --navy-deep: #0b1f33;
+  --blue: #1976d2;
+  --blue-hover: #125ea8;
+  --slate: #52667a;
+  --line: #dce5ee;
+  --canvas: #f4f7fb;
+}
+
+.signin-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background:
+    radial-gradient(circle at 7% 93%, rgb(200 224 250 / 65%) 0 8rem, transparent 8.1rem),
+    radial-gradient(circle at 93% 8%, rgb(218 233 249 / 75%) 0 13rem, transparent 13.1rem),
+    var(--canvas);
+  font-family: "DM Sans", Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.signin-card {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.82fr) minmax(390px, 1.18fr);
+  width: min(100%, 980px);
+  min-height: 610px;
+  overflow: hidden;
+  border: 1px solid rgb(218 228 238 / 85%);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 24px 65px rgb(38 63 89 / 14%);
+}
+
+.signin-brand {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 2.5rem;
+  background: linear-gradient(145deg, #163e68 0%, var(--navy) 58%, var(--navy-deep) 100%);
+  color: #fff;
+}
+
+.signin-brand::before,
+.signin-brand::after {
+  position: absolute;
+  content: "";
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 50%;
+}
+
+.signin-brand::before { width: 21rem; height: 21rem; top: -12rem; right: -10rem; }
+.signin-brand::after { width: 16rem; height: 16rem; bottom: -9rem; left: -8rem; }
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 2.55rem;
+  height: 2.55rem;
+  border-radius: 9px;
+  background: #fff;
+  color: var(--navy);
+}
+
+.brand-mark svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.brand-copy { position: relative; z-index: 1; margin-top: auto; margin-bottom: 4rem; }
+.brand-label { margin: 0 0 1.2rem; color: #a8d1fc; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; }
+
+.brand-copy h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  line-height: 1.08;
+  letter-spacing: -0.05em;
+}
+
+.brand-copy > p:last-child { max-width: 15rem; margin: 1.25rem 0 0; color: #c9dcf0; line-height: 1.65; }
+.brand-detail { position: relative; z-index: 1; color: #b7cfe8; font-size: 0.82rem; }
+.brand-detail p { margin: 0.8rem 0 0; font-style: italic; }
+.detail-line { display: block; width: 2.2rem; height: 2px; background: #62acf3; }
+
+.signin-content { display: flex; flex-direction: column; justify-content: center; padding: clamp(2rem, 5vw, 4rem); }
+.signin-heading { margin-bottom: 2rem; }
+.signin-kicker { margin: 0 0 0.6rem; color: var(--blue); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.15em; }
+
+.signin-heading h1 {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(1.8rem, 3vw, 2.35rem);
+  letter-spacing: -0.045em;
+}
+
+.signin-heading p:not(.signin-kicker) { margin: 0.65rem 0 0; color: var(--slate); font-size: 0.95rem; }
+.signin-form, .email-only-form { display: grid; gap: 0.65rem; }
+
+.signin-form label, .email-only-form label {
+  margin-top: 0.45rem;
+  color: #324a5f;
+  font-size: 0.83rem;
+  font-weight: 700;
+}
+
+.signin-form input, .email-only-field input {
+  width: 100%;
+  min-height: 3.1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.8rem 0.9rem;
+  background: #fbfcfe;
+  color: var(--navy);
+  font: inherit;
+  outline: none;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.signin-form input::placeholder, .email-only-field input::placeholder { color: #9aaaba; }
+.signin-form input:focus, .email-only-field input:focus { border-color: var(--blue); background: #fff; box-shadow: 0 0 0 3px rgb(25 118 210 / 12%); }
+
+.signin-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+.signin-row > div { display: grid; gap: 0.65rem; }
+.otp-field, .email-only-field { display: flex; gap: 0.7rem; }
+
+.otp-button, .submit-button, .email-submit-button {
+  border: 0;
+  border-radius: 8px;
+  background: var(--blue);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 5px 13px rgb(25 118 210 / 19%);
+  transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+.otp-button { flex: 0 0 auto; padding: 0 1rem; }
+.submit-button { margin-top: 1rem; padding: 0.95rem; }
+.email-submit-button { flex: 0 0 auto; padding: 0 1.1rem; }
+.otp-button:hover, .submit-button:hover, .email-submit-button:hover { background: var(--blue-hover); transform: translateY(-1px); box-shadow: 0 8px 17px rgb(25 118 210 / 25%); }
+.otp-button:active, .submit-button:active, .email-submit-button:active { transform: translateY(0); }
+
+.login-register-link {
+  margin: 1.4rem 0 0;
+  color: var(--slate);
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.login-register-link a {
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.login-register-link a:hover { text-decoration: underline; }
+
+.form-message { margin: .8rem 0 0; border-radius: 8px; padding: .75rem .9rem; background: #fff3f5; color: #b3314c; font-size: .88rem; }
+.form-message.success { background: #ecf8f1; color: #22724d; }
+
+@media (max-width: 720px) {
+  .signin-page { padding: 1rem; }
+  .signin-card { grid-template-columns: 1fr; max-width: 530px; }
+  .signin-brand { min-height: 225px; padding: 1.75rem 2rem; }
+  .brand-copy { margin: 2.5rem 0 0; }
+  .brand-copy h2 { font-size: 2rem; }
+  .brand-copy > p:last-child, .brand-detail { display: none; }
+  .signin-content { padding: 2.2rem 2rem 2.5rem; }
+}
+
+@media (max-width: 440px) {
+  .signin-row { grid-template-columns: 1fr; gap: 0; }
+  .email-only-field { flex-direction: column; }
+  .email-submit-button { min-height: 3.1rem; }
+}

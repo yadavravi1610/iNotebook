@@ -1,0 +1,107 @@
+.note-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 11rem;
+  border: 1px solid rgb(255 255 255 / 36%);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem 1.5rem;
+  background: #f2ee83;
+  box-shadow: 0 10px 22px rgb(0 0 0 / 16%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.note-card:nth-child(3n + 2) { background: #f2a9ae; }
+.note-card:nth-child(3n) { background: #6eb4d9; }
+
+.note-card:hover {
+  box-shadow: 0 16px 28px rgb(0 0 0 / 22%);
+  transform: translateY(-4px) rotate(-0.5deg);
+}
+
+.note-card h2 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 0.9rem;
+  color: #202124;
+  font-size: 1.12rem;
+}
+
+.note-card p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  color: #424242;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.note-description-clamped {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.see-more-button {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.8rem;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #202124;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.note-card-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.15rem;
+}
+
+.note-card-label {
+  border-radius: 999px;
+  padding: 0.25rem 0.55rem;
+  background: rgb(0 0 0 / 8%);
+  color: #303030;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.note-card-dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #202124;
+  box-shadow: 0 0 0 4px rgb(0 0 0 / 8%);
+}
+
+.note-card-actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.note-card-actions button {
+  border-radius: 7px;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.update-note-button { border: 1px solid rgb(0 0 0 / 20%); background: rgb(255 255 255 / 36%); color: #202124; }
+.delete-note-button { border: 1px solid rgb(0 0 0 / 15%); background: transparent; color: #54232b; }
+.update-note-button:hover { background: rgb(255 255 255 / 60%); }
+.delete-note-button:hover { background: rgb(255 255 255 / 34%); }

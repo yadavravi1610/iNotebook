@@ -1,0 +1,212 @@
+:root {
+  --navy: #102a43;
+  --blue: #1976d2;
+  --blue-hover: #125ea8;
+  --slate: #52667a;
+  --line: #dce5ee;
+  --canvas: #f4f7fb;
+}
+
+.upload-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  background:
+    radial-gradient(circle at 8% 90%, rgb(200 224 250 / 65%) 0 8rem, transparent 8.1rem),
+    radial-gradient(circle at 92% 10%, rgb(218 233 249 / 75%) 0 13rem, transparent 13.1rem),
+    var(--canvas);
+  font-family: "DM Sans", Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.upload-card {
+  width: min(100%, 560px);
+  border: 1px solid rgb(218 228 238 / 85%);
+  border-radius: 20px;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  background: #fff;
+  box-shadow: 0 24px 65px rgb(38 63 89 / 14%);
+}
+
+.upload-kicker {
+  margin: 0 0 0.55rem;
+  color: var(--blue);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.upload-header h1 {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  letter-spacing: -0.04em;
+}
+
+.upload-subtitle {
+  margin: 0.55rem 0 0;
+  color: var(--slate);
+  font-size: 0.95rem;
+}
+
+.upload-form {
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.upload-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.dropzone {
+  display: grid;
+  place-items: center;
+  gap: 0.35rem;
+  min-height: 11.5rem;
+  padding: 1.5rem;
+  border: 1.5px dashed #b7c9db;
+  border-radius: 14px;
+  background:
+    linear-gradient(#f8fbfe, #f8fbfe),
+    radial-gradient(circle at top, rgb(25 118 210 / 6%), transparent 55%);
+  color: var(--slate);
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.dropzone strong {
+  color: var(--navy);
+  font-size: 1rem;
+}
+
+.dropzone:hover,
+.dropzone.is-dragging {
+  border-color: var(--blue);
+  background: #f0f7ff;
+  transform: translateY(-1px);
+}
+
+.dropzone-icon {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.35rem;
+  border-radius: 12px;
+  background: #e8f2ff;
+  color: var(--blue);
+}
+
+.dropzone-icon svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.browse-pill {
+  margin-top: 0.55rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--navy);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.file-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.file-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fbfcfe;
+}
+
+.file-meta {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.file-name {
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-size {
+  color: var(--slate);
+  font-size: 0.78rem;
+}
+
+.remove-file {
+  border: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  background: #eef2f6;
+  color: #5a6d80;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.remove-file:hover {
+  background: #ffe8ec;
+  color: #b3314c;
+}
+
+.upload-button {
+  margin-top: 0.25rem;
+  border: 0;
+  border-radius: 8px;
+  padding: 0.95rem;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 5px 13px rgb(25 118 210 / 19%);
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.upload-button:hover:not(:disabled) {
+  background: var(--blue-hover);
+  transform: translateY(-1px);
+}
+
+.upload-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+@media (max-width: 480px) {
+  .upload-page {
+    padding: 1rem;
+  }
+}
