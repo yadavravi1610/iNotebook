@@ -10,7 +10,16 @@ const cors = require('cors')
 const UserRoute = require("./routes/UserRoute")
 const NoteRoute = require("./routes/NoteRoute")
 const fileUploadRoute = require("./routes/fileUploadRoute")
-app.use(cors({ origin: ["http://localhost:5173", "http://localhost:5174"] }));
+// app.use(cors({ origin: ["http://localhost:5173", "http://localhost:5174"] }));
+app.use(cors({
+    origin: [
+      "http://localhost:5174",
+      "https://magenta-badger-208226.hostingersite.com"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "auth-token"],
+    credentials: true
+  }));
 app.use(express.json())
 
 app.use('/assets/data', express.static('statics'));
