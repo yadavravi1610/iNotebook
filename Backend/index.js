@@ -17,7 +17,7 @@ app.use(cors({
       "https://magenta-badger-208226.hostingersite.com"
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "auth-token"],
+    allowedHeaders: ["Content-Type", "token"],
     credentials: true
   }));
 app.use(express.json())
