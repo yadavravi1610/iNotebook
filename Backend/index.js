@@ -15,7 +15,7 @@ app.use(express.json())
 
 app.use('/assets/data', express.static('statics'));
 
-app.use("api/user", UserRoute)
+app.use("/api/user", UserRoute)
 app.use("/api/notes", NoteRoute)
 app.use("/api/upload", fileUploadRoute)
 
