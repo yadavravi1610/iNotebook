@@ -120,7 +120,7 @@ const Login = () => {
             </form>
 
             <p className="login-register-link">
-              New to iNotebook? <Link to="/signin">Create an account</Link>
+              New to iNotebook? <Link to="/signup">Create an account</Link>
             </p>
           </div>
         </section>
