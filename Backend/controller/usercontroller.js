@@ -25,13 +25,11 @@ const create_new_user = async (req, res) => {
 
     // console.log(exist_otp);
 
-    if (exist_otp.length === 0) {
+    if (!exist_otp) {
       return res.status(400).json({ message: "Invalid OTP", success: false });
     }
-    // const exist_otp = await OTPModel.findOne({otpCode: req.body.otp});
-    // console.log(exist_otp);
 
-    if (exist_otp.otpCode !== req.body.otp) {
+    if (String(exist_otp.otpCode) !== String(req.body.otp)) {
       return res.status(400).json({ message: "Invalid OTP", success: false });
     }
 
@@ -137,7 +135,16 @@ const sendOTPtouser = async (req, res) => {
 
     const exist_email = await UserModel.findOne({ email: req.body.email });
     if (!exist_email) {
-      sendOTPtoEmail(req.body.email);
+      try {
+        await sendOTPtoEmail(req.body.email);
+      } catch (error) {
+        console.error("Failed to send OTP email:", error);
+        return res.status(500).json({
+          message:
+            "Failed to send OTP email. Please check your email address and try again.",
+          success: false,
+        });
+      }
 
       return res
         .status(200)

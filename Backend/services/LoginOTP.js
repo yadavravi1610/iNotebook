@@ -1,30 +1,33 @@
-const transporter = require("./Nodemailer");
+const { transporter, getSmtpConfig } = require("./Nodemailer");
 const otpModel = require("../models/OTPModel");
 
 function generateLoginOTP() {
-  return Math.floor(100000 + Math.random() * 900000);
+  return String(Math.floor(100000 + Math.random() * 900000));
 }
 
-const sendOTPtoEmail = async (email, req, res) => {
-  try {
+const sendOTPtoEmail = async (email) => {
+  if (!email) {
+    throw new Error("Email is required");
+  }
 
-    if(typeof email==="undefined"){
-      return res.status(400).json({message: "Email is required"})
-    }
+  if (!getSmtpConfig() || !transporter) {
+    throw new Error(
+      "Email service is not configured. Set SMTP_HOST, SMTP_USER, and SMTP_PASS.",
+    );
+  }
 
-    const OTP = generateLoginOTP();
+  const OTP = generateLoginOTP();
 
-    const newEntry = await otpModel.create({
-      otpCode: OTP,
-      email: email,
-    });
+  await otpModel.create({
+    otpCode: OTP,
+    email,
+  });
 
-
-    const info = await transporter.sendMail({
-      from: `"OTP for iNotebook" <${process.env.SMTP_USER}>`, // sender address
-      to: email,
-      subject: "OTP From iNotebook For Login",
-      html: `<!DOCTYPE html>
+  await transporter.sendMail({
+    from: `"OTP for iNotebook" <${process.env.SMTP_USER}>`,
+    to: email,
+    subject: "OTP From iNotebook For Login",
+    html: `<!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
@@ -50,7 +53,7 @@ const sendOTPtoEmail = async (email, req, res) => {
                       <span style="font-size: 34px; font-weight: bold; letter-spacing: 9px; color: #4338ca;">${OTP}</span>
                     </div>
 
-                    <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #6b7280; text-align: center;">This code expires in <strong style="color: #374151;">10 minutes</strong>. Do not share it with anyone.</p>
+                    <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #6b7280; text-align: center;">This code expires in <strong style="color: #374151;">15 minutes</strong>. Do not share it with anyone.</p>
                   </td>
                 </tr>
                 <tr>
@@ -64,12 +67,9 @@ const sendOTPtoEmail = async (email, req, res) => {
         </table>
       </body>
     </html>`,
-    });
+  });
 
-    console.log("OTP Sent Successfully");
-  } catch (err) {
-    console.error("Error while sending mail:", err);
-  }
+  console.log(`OTP sent successfully to ${email}`);
 };
 
 module.exports = sendOTPtoEmail;

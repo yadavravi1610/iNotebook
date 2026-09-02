@@ -77,15 +77,15 @@ const Signup = () => {
     // console.log(json);
 
     if (json.success === true) {
-      toast.success("OTP sent successfully");
+      toast.success(json.message || "OTP sent successfully");
       setFormStatus(true);
       return;
     }
-    toast.error("Something went wrong/ Email already Exists");
+    toast.error(json.message || "Something went wrong. Email may already exist.");
   };
 
   useEffect(() => {
-    if (sessionStorage.getItem("toke")) {
+    if (sessionStorage.getItem("token")) {
       navigation("/");
     }
   }, []);
@@ -144,8 +144,7 @@ const Signup = () => {
                   type="email"
                   placeholder="you@example.com"
                   value={emailOnly}
-                  onChange={handleChange}
-                  restricted="true"
+                  readOnly
                   required
                 />
 

@@ -1,14 +1,36 @@
 const nodemailer = require("nodemailer");
 
-// Create a transporter using SMTP
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: 587,
-  secure: false, // use STARTTLS (upgrade connection to TLS after connecting)
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-}); 
+function getSmtpConfig() {
+  const host = process.env.SMTP_HOST;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  const port = Number(process.env.SMTP_PORT) || 587;
 
-module.exports = transporter
+  if (!host || !user || !pass) {
+    return null;
+  }
+
+  return { host, user, pass, port };
+}
+
+function createTransporter() {
+  const config = getSmtpConfig();
+  if (!config) {
+    return null;
+  }
+
+  return nodemailer.createTransport({
+    host: config.host,
+    port: config.port,
+    secure: config.port === 465,
+    auth: {
+      user: config.user,
+      pass: config.pass,
+    },
+  });
+}
+
+module.exports = {
+  transporter: createTransporter(),
+  getSmtpConfig,
+};

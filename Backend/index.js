@@ -3,6 +3,16 @@ require("dotenv").config();
 const dbToConnect = require("./db/db");
 dbToConnect();
 
+const { getSmtpConfig } = require("./services/Nodemailer");
+const smtpConfig = getSmtpConfig();
+if (!smtpConfig) {
+  console.warn(
+    "WARNING: SMTP is not configured (SMTP_HOST, SMTP_USER, SMTP_PASS). OTP emails will not be sent.",
+  );
+} else {
+  console.log(`SMTP configured for ${smtpConfig.user} via ${smtpConfig.host}:${smtpConfig.port}`);
+}
+
 
 const express = require("express");
 const app = express();

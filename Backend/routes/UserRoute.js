@@ -4,7 +4,7 @@ const UserModel = require("../models/UserModel");
 const bcrypt = require("bcryptjs");
 const {create_new_user, user_login, sendOTPtouser} = require("../controller/usercontroller");
 
-const router = express().router
+const router = express.Router();
 
 router.post("/create-new-user",[
     body("name").isString().withMessage("Invalid Name").isLength({min:3}).withMessage("Name must be at least 3 characters long"),
